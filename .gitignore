@@ -1,0 +1,31 @@
+# 📂 Логи и временные файлы
+bitrix/cache/
+bitrix/managed_cache/
+bitrix/stack_cache/
+bitrix/tmp/
+upload/tmp/
+upload/clouds/
+upload/resize_cache/
+upload/1c_catalog/
+
+# 📂 Конфиги и секретные данные
+
+# 📂 IDE и системные файлы
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.DS_Store
+*.log
+*.bak
+
+# 📂 Composer, Node.js
+/vendor/
+node_modules/
+composer.lock
+package-lock.json
+
+# 📂 Git и деплой файлы
+.git/
+.env
+.env.local
