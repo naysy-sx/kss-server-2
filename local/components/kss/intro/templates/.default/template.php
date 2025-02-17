@@ -15,11 +15,10 @@
 $this->setFrameMode(true);
 ?>
 
-<h1 class="intro-title" data-aos="fade" data-aos-easing="ease" data-aos-delay="100">
+<h1 class="intro-title">
   <?= ($arParams["TITLE"]) ?>
 </h1>
-
-<ul class="intro-list bordered" data-aos="fade" data-aos-easing="ease" data-aos-delay="200">
+<ul class="intro-list bordered">
   <? if ($arResult["ITEMS"]): ?>
     <? foreach ($arResult["ITEMS"] as $arItem): ?>
       <?
@@ -30,8 +29,9 @@ $this->setFrameMode(true);
       ?>
       <li id="<?= $editId ?>" class="intro-item"><?= $arItem["NAME"] ?></li>
     <? endforeach; ?>
+
     <li class="intro-item">
-      <a href="#" class="button">Заказать расчёт</a>
+      <a href="#" class="button"><?= ($arParams["BUTTON_TEXT"]) ?></a>
     </li>
   <? endif; ?>
 </ul>
