@@ -66,6 +66,10 @@ $asset->addJs(SITE_TEMPLATE_PATH . '/static/vendors/aos.js');
   <meta name="twitter:image" content="<?= SITE_TEMPLATE_PATH ?>/static/images/fav/android-icon-192x192.png" />
   <!-- Метатеги для верификации -->
 
+  <!-- Плагины -->
+  <script src="<?= SITE_TEMPLATE_PATH ?>/static/vendors/swiper-bundle.min.js"></script>
+
+
   <!-- Стили -->
   <?php
   $APPLICATION->ShowHead();

@@ -36,18 +36,13 @@ $arComponentParameters = array(
       "NAME" => "Заголовок",
       "TYPE" => "STRING",
     ),
+    "SUBTITLE" => array(
+      "NAME" => "Текст под заголовком",
+      "TYPE" => "STRING",
+    ),
     "BUTTON_TEXT" => array(
       "NAME" => "Текст кнопки",
       "TYPE" => "STRING",
-    ),
-    "PICTURE" => array(
-      "NAME" => "Изображение по центру",
-      "TYPE" => "FILE",
-      "FD_TARGET" => "F",
-      "FD_EXT" => "jpg,jpeg,png,gif",
-      "FD_UPLOAD" => true,
-      "FD_USE_MEDIALIB" => true,
-      "FD_MEDIALIB_TYPES" => array("image"),
-    ),
+    )
   ),
 );

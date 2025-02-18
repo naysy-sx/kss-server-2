@@ -1169,6 +1169,7 @@ body:has(#bx-panel) .start-block {
 }
 
 .brands-item {
+	min-width: 200px;
 	padding: var(--base);
 }
 

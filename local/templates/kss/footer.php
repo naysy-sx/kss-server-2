@@ -155,7 +155,7 @@
 </div>
 
 <!-- SCRIPTS -->
-<script src="/static/vendors/swiper-bundle.min.js"></script>
+
 <script src="/static/vendors/aos.js"></script>
 
 <script>
