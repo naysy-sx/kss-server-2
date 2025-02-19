@@ -1,7 +1,16 @@
 <?php
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+/** @var CBitrixComponentTemplate $this */
+/** @var array $arParams */
+/** @var array $arResult */
+/** @global CMain $APPLICATION */
+/** @global CUser $USER */
+
 $this->setFrameMode(true);
 
+if ($arParams["DISPLAY_TOP_PAGER"]):
+  echo $arResult["NAV_STRING"];
+endif;
 ?>
 
 <ul class="brands">
@@ -9,12 +18,12 @@ $this->setFrameMode(true);
     $this->AddEditAction(
       $arItem['ID'],
       $arItem['EDIT_LINK'],
-      CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "ELEMENT_EDIT")
+      $arItem['EDIT_LINK_TEXT']
     );
     $this->AddDeleteAction(
       $arItem['ID'],
       $arItem['DELETE_LINK'],
-      CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "ELEMENT_DELETE"),
+      $arItem['DELETE_LINK_TEXT'],
       array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM'))
     );
   ?>
@@ -36,3 +45,7 @@ $this->setFrameMode(true);
 <div class="block b9"></div>
 <div class="block b10"></div>
 <div class="block b11"></div>
+
+<? if ($arParams["DISPLAY_BOTTOM_PAGER"]): ?>
+  <?= $arResult["NAV_STRING"] ?>
+<? endif; ?>

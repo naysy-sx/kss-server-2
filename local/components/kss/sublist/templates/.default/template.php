@@ -22,12 +22,12 @@
   $this->AddEditAction(
     $item['ID'],
     $item['EDIT_LINK'],
-    CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "ELEMENT_EDIT")
+    $item['EDIT_LINK_TEXT']
   );
   $this->AddDeleteAction(
     $item['ID'],
     $item['DELETE_LINK'],
-    CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "ELEMENT_DELETE"),
+    $item['DELETE_LINK_TEXT'],
     array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM'))
   );
   ?>

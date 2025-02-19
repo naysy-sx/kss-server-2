@@ -89,6 +89,13 @@ $asset->addJs(SITE_TEMPLATE_PATH . '/static/vendors/aos.js');
 </head>
 
 <body>
+
+  <? $APPLICATION->IncludeFile(
+    SITE_TEMPLATE_PATH . "/include/header_video.php",
+    array(),
+    array("MODE" => "html")
+  ); ?>
+
   <video autoplay muted loop id="intro-video">
     <source src="/static/video/intro.mp4" type="video/mp4" />
   </video>

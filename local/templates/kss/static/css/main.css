@@ -235,6 +235,7 @@ h4 {
 .button {
 	display: inline-flex;
 	align-items: center;
+	color: var(--color-dark);
 	justify-content: center;
 	border-style: solid;
 	border-width: 1px;
@@ -250,6 +251,10 @@ h4 {
 .button:hover {
 	border-color: var(--color-light);
 	background-color: var(--color-light);
+	color: var(--color-dark);
+}
+
+section:not(.dark) a.button {
 	color: var(--color-dark);
 }
 
