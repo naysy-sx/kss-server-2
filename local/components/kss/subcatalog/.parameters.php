@@ -2,45 +2,48 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Main\Loader;
-use Bitrix\Iblock\IblockTable;
 
-Loader::includeModule('iblock');
+if (!Loader::includeModule('iblock')) {
+  return;
+}
 
-// Получаем список всех инфоблоков
-$iblockList = IblockTable::getList([
-  'select' => ['ID', 'NAME'],
-]);
-
-$iblockOptions = [];
-while ($iblock = $iblockList->fetch()) {
-  $iblockOptions[$iblock['ID']] = $iblock['NAME'];
+$iblockOptions = array();
+$rsIblocks = CIBlock::GetList(
+  array("SORT" => "ASC"),
+  array("ACTIVE" => "Y")
+);
+while ($arIblock = $rsIblocks->Fetch()) {
+  $iblockOptions[$arIblock["ID"]] = "[" . $arIblock["ID"] . "] " . $arIblock["NAME"];
 }
 
 $arComponentParameters = array(
+  "GROUPS" => array(),
   "PARAMETERS" => array(
     "IBLOCK_ID" => array(
       "PARENT" => "BASE",
-      "NAME" => "Инфоблок",
+      "NAME" => "ID инфоблока",
       "TYPE" => "LIST",
       "VALUES" => $iblockOptions,
       "DEFAULT" => "",
       "REFRESH" => "Y",
     ),
     "CACHE_TIME" => array(
-      "PARENT" => "CACHE_SETTINGS",
-      "NAME" => "Время кеширования (сек.)",
-      "TYPE" => "STRING",
-      "DEFAULT" => "3600000",
+      "DEFAULT" => 36000000
     ),
     "TITLE" => array(
+      "PARENT" => "BASE",
       "NAME" => "Заголовок",
       "TYPE" => "STRING",
+      "DEFAULT" => "",
     ),
     "BUTTON_TEXT" => array(
+      "PARENT" => "BASE",
       "NAME" => "Текст кнопки",
       "TYPE" => "STRING",
+      "DEFAULT" => "",
     ),
     "PICTURE" => array(
+      "PARENT" => "BASE",
       "NAME" => "Изображение по центру",
       "TYPE" => "FILE",
       "FD_TARGET" => "F",
@@ -48,6 +51,18 @@ $arComponentParameters = array(
       "FD_UPLOAD" => true,
       "FD_USE_MEDIALIB" => true,
       "FD_MEDIALIB_TYPES" => array("image"),
+    ),
+    "ELEMENT_EDIT" => array(
+      "PARENT" => "BASE",
+      "NAME" => "Разрешить редактирование",
+      "TYPE" => "CHECKBOX",
+      "DEFAULT" => "Y",
+    ),
+    "ELEMENT_DELETE" => array(
+      "PARENT" => "BASE",
+      "NAME" => "Разрешить удаление",
+      "TYPE" => "CHECKBOX",
+      "DEFAULT" => "Y",
     ),
   ),
 );

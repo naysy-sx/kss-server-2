@@ -88,18 +88,15 @@ $asset->addJs(SITE_TEMPLATE_PATH . '/static/vendors/aos.js');
   </title>
 </head>
 
+
+
 <body>
-
-  <? $APPLICATION->IncludeFile(
-    SITE_TEMPLATE_PATH . "/include/header_video.php",
-    array(),
-    array("MODE" => "html")
-  ); ?>
-
-  <video autoplay muted loop id="intro-video">
-    <source src="/static/video/intro.mp4" type="video/mp4" />
-  </video>
   <div class="start-block dark" style="padding-top: 126px">
+    <? $APPLICATION->IncludeFile(
+      SITE_TEMPLATE_PATH . "/include/header_video.php",
+      array(),
+      array("MODE" => "html")
+    ); ?>
     <!-- HEADER -->
     <div class="header-wrapper">
       <div class="container -large">
@@ -110,40 +107,19 @@ $asset->addJs(SITE_TEMPLATE_PATH . '/static/vendors/aos.js');
                 src="<?= SITE_TEMPLATE_PATH ?>/static/images/logo.svg"
                 alt="" />
             </a>
-            <nav class="nav">
-              <ul class="nav-list">
-                <li class="nav-item">
-                  <a href="#company" class="nav-link">
-                    <span class="nav-link-text">Компания</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#production" class="nav-link">
-                    <span class="nav-link-text">Производство</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#products" class="nav-link">
-                    <span class="nav-link-text">Продукция</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#projects" class="nav-link">
-                    <span class="nav-link-text">Проекты</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#docs" class="nav-link">
-                    <span class="nav-link-text">Документы</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#contacts" class="nav-link">
-                    <span class="nav-link-text">Контакты</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+
+            <? $APPLICATION->IncludeComponent(
+              "kss:menu",
+              ".default",
+              array(
+                "IBLOCK_ID" => "18",
+                "CACHE_TYPE" => "A",
+                "CACHE_TIME" => "36000000",
+                "COMPONENT_TEMPLATE" => ".default"
+              ),
+              false
+            ); ?>
+
             <ul class="header-contacts bordered">
               <li class="header-contacts-item">
                 <a href="tel:8 (000) 000-00-00" class="header-contacts-link">8 (000) 000-00-00</a>
@@ -165,3 +141,41 @@ $asset->addJs(SITE_TEMPLATE_PATH . '/static/vendors/aos.js');
       </div>
     </div>
     <!-- HEADER END -->
+    <?php
+    if ($APPLICATION->GetCurPage(true) == '/index.php' || $APPLICATION->GetCurPage(true) == '/test.php'): ?>
+      <!-- 1. INTRO -->
+      <section class="intro-wrapper dark" id="company">
+        <div class="container -large">
+          <div class="intro bordered">
+            <? $APPLICATION->IncludeComponent(
+              "kss:intro",
+              ".default",
+              array(
+                "COMPONENT_TEMPLATE" => ".default",
+                "IBLOCK_ID" => "1",
+                "TITLE" => "Заголовок",
+                "BUTTON_TEXT" => "Текст кнопки"
+              ),
+              false
+            ); ?>
+
+            <? $APPLICATION->IncludeComponent(
+              "kss:catalog",
+              "",
+              array(
+                "IBLOCK_TYPE" => "catalog",
+                "ELEMENT_EDIT" => "Y",
+                "ELEMENT_DELETE" => "Y",
+                "CACHE_TYPE" => "A",
+                "CACHE_TIME" => "360000"
+              ),
+              false
+            ); ?>
+          </div>
+        </div>
+      </section>
+      <!-- INTRO END -->
+    <?php endif; ?>
+
+  </div>
+  <!-- START BLOCK END -->

@@ -1,37 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("test");
-?><!-- 1. INTRO -->
-<section class="intro-wrapper dark" id="company">
-	<div class="container -large">
-		<div class="intro bordered">
-			<? $APPLICATION->IncludeComponent(
-				"kss:intro",
-				".default",
-				array(
-					"COMPONENT_TEMPLATE" => ".default",
-					"IBLOCK_ID" => "1",
-					"TITLE" => "Заголовок",
-					"BUTTON_TEXT" => "Текст кнопки"
-				),
-				false
-			); ?>
-
-			<? $APPLICATION->IncludeComponent(
-				"kss:catalog",
-				".default",
-				array(
-					"IBLOCK_TYPE" => "catalog",
-					"CACHE_TYPE" => "A",
-					"CACHE_TIME" => "3600"
-				),
-				false
-			); ?>
-
-		</div>
-	</div>
-</section>
-<!-- INTRO END -->
+?>
 <div class="page">
 	<!-- MAIN -->
 
@@ -40,7 +10,7 @@ $APPLICATION->SetTitle("test");
 		<!-- /////////// SECTIONS /////////// -->
 
 		<!-- 2. PRODUCTION -->
-		<section class="production-wrapper dark">
+		<section class="production-wrapper dark" id="production">
 			<div class="container -large">
 				<? $APPLICATION->IncludeComponent(
 					"kss:subcatalog",
@@ -48,7 +18,12 @@ $APPLICATION->SetTitle("test");
 					array(
 						"IBLOCK_ID" => "6",
 						"CACHE_TYPE" => "A",
-						"CACHE_TIME" => "3600"
+						"CACHE_TIME" => "36000000",
+						"TITLE" => "",
+						"BUTTON_TEXT" => "",
+						"PICTURE" => "",
+						"ELEMENT_EDIT" => "Y",
+						"ELEMENT_DELETE" => "Y"
 					),
 					false
 				); ?>
@@ -75,7 +50,7 @@ $APPLICATION->SetTitle("test");
 		</section>
 		<!-- VIDEO END -->
 		<!-- 4. PRODUCTS -->
-		<section class="products-wrapper dark" id="products">
+		<section class="products-wrapper dark" id="production">
 			<div class="container -large">
 				<div class="products bordered">
 
@@ -85,7 +60,7 @@ $APPLICATION->SetTitle("test");
 						array(
 							"IBLOCK_ID" => "7",
 							"CACHE_TYPE" => "A",
-							"CACHE_TIME" => "3600"
+							"CACHE_TIME" => "36000000"
 						),
 						false
 					); ?>
@@ -95,7 +70,7 @@ $APPLICATION->SetTitle("test");
 						array(
 							"IBLOCK_ID" => "9",
 							"CACHE_TYPE" => "A",
-							"CACHE_TIME" => "3600"
+							"CACHE_TIME" => "36000000"
 						),
 						false
 					); ?>
@@ -180,7 +155,7 @@ $APPLICATION->SetTitle("test");
 
 
 		<!-- 8. PROJECTS -->
-		<section class="projects-wrapper dark">
+		<section class="projects-wrapper dark" id="projects">
 			<?php
 			$APPLICATION->IncludeComponent(
 				"kss:project",
@@ -203,7 +178,7 @@ $APPLICATION->SetTitle("test");
 		<!-- PROJECTS END -->
 
 		<!-- 9. AWARDS -->
-		<section class="awards-wrapper">
+		<section class="awards-wrapper" id="docs">
 			<?php
 			$APPLICATION->IncludeComponent(
 				"kss:awards",
@@ -261,7 +236,30 @@ $APPLICATION->SetTitle("test");
 			?>
 		</section>
 		<!-- NEWS END -->
+		<!-- 12. CONTACTS -->
+		<section class="contacts-wrapper dark" id="contacts">
+			<?php
+			$APPLICATION->IncludeComponent(
+				"kss:contacts",
+				".default",
+				array(
+					"IBLOCK_ID" => "17",
+					"CACHE_TYPE" => "A",
+					"CACHE_TIME" => "36000000",
+					"ELEMENT_EDIT" => "Y",
+					"ELEMENT_DELETE" => "Y",
+					"TITLE" => "Контакты",
+					"MAP" => "45.024125, 39.054994",
+					"BUTTON_TEXT" => "Построить маршрут",
+					"BUTTON_LINK" => "https://yandex.ru/maps/-/CHuiy-jc",
+					"CLASS" => "",
+					"TEXT" => "",
+				)
+			);
+			?>
 
+		</section>
+		<!-- CONTACTS END -->
 		<!-- /////////// SECTIONS /////////// -->
 	</main>
 	<!-- MAIN END -->

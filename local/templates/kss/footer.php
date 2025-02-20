@@ -159,6 +159,24 @@
 <script src="/static/vendors/aos.js"></script>
 
 <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const links = document.querySelectorAll(".nav-link");
+    links.forEach(link => {
+      link.addEventListener("click", function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute("href").substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 50,
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+  });
+
+
   const menuBtn = document.querySelector(".menu-btn");
   const nav0 = document.querySelector(".nav");
   let menuOpen = false;
@@ -245,6 +263,7 @@
     }
 
     window.addEventListener("scroll", handleScroll);
+
   });
 
   AOS.init();

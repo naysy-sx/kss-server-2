@@ -23,6 +23,7 @@ html {
 
 body {
 	background: var(--color-dark);
+	scroll-behavior: smooth;
 }
 
 .page {
@@ -205,7 +206,6 @@ h4 {
 
 .start-block:before {
 	content: "";
-	display: none;
 	position: absolute;
 	inset: 0;
 	height: 100%;

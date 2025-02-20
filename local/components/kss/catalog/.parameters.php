@@ -1,36 +1,36 @@
 <?php
+// catalog/.parameters.php
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
-use Bitrix\Main\Loader;
-use Bitrix\Iblock\IblockTable;
-
-Loader::includeModule('iblock');
-
-// Получаем список всех инфоблоков
-$iblockList = IblockTable::getList([
-  'select' => ['ID', 'NAME'],
-]);
-
-$iblockOptions = [];
-while ($iblock = $iblockList->fetch()) {
-  $iblockOptions[$iblock['ID']] = $iblock['NAME'];
+if (!CModule::IncludeModule("iblock")) {
+  return;
 }
 
+$arIBlockTypes = CIBlockParameters::GetIBlockTypes();
+
 $arComponentParameters = array(
+  "GROUPS" => array(),
   "PARAMETERS" => array(
-    "IBLOCK_ID" => array(
+    "IBLOCK_TYPE" => array(
       "PARENT" => "BASE",
-      "NAME" => "Инфоблок",
+      "NAME" => "Тип инфоблока",
       "TYPE" => "LIST",
-      "VALUES" => $iblockOptions,
-      "DEFAULT" => "",
+      "VALUES" => $arIBlockTypes,
       "REFRESH" => "Y",
+      "DEFAULT" => "",
     ),
-    "CACHE_TIME" => array(
-      "PARENT" => "CACHE_SETTINGS",
-      "NAME" => "Время кеширования (сек.)",
-      "TYPE" => "STRING",
-      "DEFAULT" => "3600",
+    "ELEMENT_EDIT" => array(
+      "PARENT" => "BASE",
+      "NAME" => "Разрешить редактирование",
+      "TYPE" => "CHECKBOX",
+      "DEFAULT" => "Y",
     ),
+    "ELEMENT_DELETE" => array(
+      "PARENT" => "BASE",
+      "NAME" => "Разрешить удаление",
+      "TYPE" => "CHECKBOX",
+      "DEFAULT" => "Y",
+    ),
+    "CACHE_TIME" => array("DEFAULT" => 36000000),
   ),
 );
